@@ -13,19 +13,10 @@ public class Section {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private String title; 
-	@ManyToMany(mappedBy="enrolledSections")
-	private List<Student> enrolledStudents;
-	
-	public void enrollStudent(Student student) {
-	   this.enrolledStudents.add(student);
-	   if(!student.getEnrolledSections().contains(this)) {
-	       student.getEnrolledSections().add(this);
-	   }
-	}
+	private String title;
+	private int seats;
 
-	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -38,10 +29,12 @@ public class Section {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public List<Student> getEnrolledStudents() {
-		return enrolledStudents;
+
+	public int getSeats() {
+		return seats;
 	}
-	public void setEnrolledStudents(List<Student> enrolledStudents) {
-		this.enrolledStudents = enrolledStudents;
+
+	public void setSeats(int seats) {
+		this.seats = seats;
 	}
 }

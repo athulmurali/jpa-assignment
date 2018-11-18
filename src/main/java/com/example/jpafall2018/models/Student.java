@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 public class Student extends User {
 	private int graduatingYear;
 	private boolean hasGrant;
-	
+
 	  @ManyToMany
 	  @JoinTable(name="ENROLLMENT",
 	     joinColumns=@JoinColumn(name="STUDENT_ID",
@@ -19,14 +19,14 @@ public class Student extends User {
 	     inverseJoinColumns=@JoinColumn(name=
 	        "SECTION_ID", referencedColumnName="ID"))
 	  private List<Section> enrolledSections;
+//
+//	  public void enrollSection(Section section) {
+//		   this.enrolledSections.add(section);
+//		   if(!section.getEnrolledStudents().contains(this))
+//		       section.getEnrolledStudents().add(this);
+//		}
 
-	  public void enrollSection(Section section) {
-		   this.enrolledSections.add(section);
-		   if(!section.getEnrolledStudents().contains(this))
-		       section.getEnrolledStudents().add(this);
-		}
 
-	
 	public int getGraduatingYear() {
 		return graduatingYear;
 	}
