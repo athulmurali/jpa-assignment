@@ -29,6 +29,13 @@ public class Enrollment {
         this.section = section;
     }
 
+    public Enrollment( Student student, Section section) {
+        this.grade = 0;
+        this.feedback = null;
+        this.student = student;
+        this.section = section;
+    }
+
 
     public int getGrade() {
         return grade;

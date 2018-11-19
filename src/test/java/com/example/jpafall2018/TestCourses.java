@@ -19,7 +19,7 @@ public class TestCourses {
 	  CourseRepository courseRepository;
 	  @Autowired
 	  FacultyRepository facultyRepository;
-	  
+
 	  @Test
 	  public void testAuthoredCourse() {
 		   Faculty faculty = facultyRepository.findById(1).get();
@@ -30,13 +30,13 @@ public class TestCourses {
 		   facultyRepository.save(faculty);
 		}
 
-	  
-	  
+
+//
 //	  @Test
-	  public void testCreateCourse() {
-	     Course course = new Course();
-	     course.setTitle("CS5500");
-	     courseRepository.save(course);
-	}
+//	  public void testCreateCourse() {
+//	     Course course = new Course();
+//	     course.setTitle("CS5500");
+//	     courseRepository.save(course);
+//	}
 
 }

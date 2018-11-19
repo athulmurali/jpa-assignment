@@ -1,21 +1,35 @@
 package com.example.jpafall2018.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Course {
+
+
+	private Course(){}
+	public Course(String title, Faculty author, List<Section> sections) {
+		this.title = title;
+		this.author = author;
+		this.sections = sections;
+	}
+
+	public Course(String title, Faculty author) {
+		this.title = title;
+		this.author = author;
+	}
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title;
-	
-	@ManyToOne
+
+	@ManyToOne(	cascade = {CascadeType.ALL})
 	private Faculty author;
-	
+
+	@OneToMany(mappedBy="course",orphanRemoval = true)
+	private List<Section> sections;
+
 	public int getId() {
 		return id;
 	}
@@ -28,14 +42,21 @@ public class Course {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public List<Section> getSections() {
+		return sections;
+	}
+
+	public void setSections(List<Section> sections) {
+		this.sections = sections;
+	}
+
+
 	public Faculty getAuthor() {
 		return author;
 	}
+
 	public void setAuthor(Faculty author) {
 		this.author = author;
-	     if(!author.getAuthoredCourses()
-	    		 .contains(this)) {
-    		         author.getAuthoredCourses().add(this);
-    		 }
-     }
+	}
 }

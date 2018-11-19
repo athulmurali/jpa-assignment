@@ -10,21 +10,17 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Student extends User {
 	private int graduatingYear;
-	private boolean hasGrant;
+	private Long scholarship;
 
-	  @ManyToMany
-	  @JoinTable(name="ENROLLMENT",
-	     joinColumns=@JoinColumn(name="STUDENT_ID",
-	     referencedColumnName="ID"),
-	     inverseJoinColumns=@JoinColumn(name=
-	        "SECTION_ID", referencedColumnName="ID"))
-	  private List<Section> enrolledSections;
-//
-//	  public void enrollSection(Section section) {
-//		   this.enrolledSections.add(section);
-//		   if(!section.getEnrolledStudents().contains(this))
-//		       section.getEnrolledStudents().add(this);
-//		}
+
+	private Student(){}
+	public Student(String username, String password,
+				   String first, String last, int graduatingYear,
+				   Long scholarship) {
+		super(username, password, first, last);
+		this.graduatingYear = graduatingYear;
+		this.scholarship = scholarship;
+	}
 
 
 	public int getGraduatingYear() {
@@ -33,20 +29,13 @@ public class Student extends User {
 	public void setGraduatingYear(int graduatingYear) {
 		this.graduatingYear = graduatingYear;
 	}
-	public boolean isHasGrant() {
-		return hasGrant;
-	}
-	public void setHasGrant(boolean hasGrant) {
-		this.hasGrant = hasGrant;
-	}
 
 
-	public List<Section> getEnrolledSections() {
-		return enrolledSections;
+	public Long getScholarship() {
+		return scholarship;
 	}
 
-
-	public void setEnrolledSections(List<Section> enrolledSections) {
-		this.enrolledSections = enrolledSections;
+	public void setScholarship(Long scholarship) {
+		this.scholarship = scholarship;
 	}
 }
