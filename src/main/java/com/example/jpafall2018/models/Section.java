@@ -36,6 +36,10 @@ public class Section {
 	private Course course;
 
 
+	@OneToMany(mappedBy = "section",
+			fetch = FetchType.EAGER, orphanRemoval = true,cascade = CascadeType.ALL)
+	private List<Enrollment> enrollments;
+
 
 	public int getId() {
 		return id;
@@ -64,5 +68,13 @@ public class Section {
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(List<Enrollment> enrollments) {
+		this.enrollments = enrollments;
 	}
 }

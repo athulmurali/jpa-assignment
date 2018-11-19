@@ -1,17 +1,25 @@
 package com.example.jpafall2018.models;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 @Entity
 public class Student extends User {
 	private int graduatingYear;
 	private Long scholarship;
 
+	@OneToMany(cascade = CascadeType.ALL,
+			mappedBy = "student",
+			orphanRemoval = true,fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+
+
+	private List<Enrollment> enrollments = new ArrayList<>();
 
 	private Student(){}
 	public Student(String username, String password,
@@ -37,5 +45,13 @@ public class Student extends User {
 
 	public void setScholarship(Long scholarship) {
 		this.scholarship = scholarship;
+	}
+
+	public List<Enrollment> getEnrollments() {
+		return enrollments;
+	}
+
+	public void setEnrollments(List<Enrollment> enrollments) {
+		this.enrollments = enrollments;
 	}
 }

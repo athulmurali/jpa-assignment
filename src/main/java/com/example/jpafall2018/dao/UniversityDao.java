@@ -5,6 +5,7 @@ import com.example.jpafall2018.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -80,18 +81,13 @@ public class UniversityDao  implements UniversityInterface {
     }
     @Override
     public Course setAuthorForCourse(Faculty faculty, Course course) {
-
-        System.out.println("Course : " + course.getId() + ", Section : " + faculty.getId());
-        Optional<Course> courseFound    = courseRepository.findById(course.getId());
-        Optional<Faculty> facultyFound  = facultyRepository.findById(course.getId());
-        if(courseFound.isPresent() && facultyFound.isPresent()) {
+        Optional<Course> courseFound= courseRepository.findById(course.getId());
+        if(courseFound.isPresent()) {
             course = courseFound.get();
-            faculty = facultyFound.get();
-            course.setAuthor(faculty);
-
-            courseRepository.save(course);
-            return course;
         }
+        course.setAuthor(faculty);
+
+        courseRepository.save(course);
 
         return course;
 
@@ -162,12 +158,39 @@ public class UniversityDao  implements UniversityInterface {
 
     @Override
     public List<Student> findStudentsInSection(Section section) {
-        return null;
+        Optional<Section> sectionOptional = sectionRepository.findById(section.getId());
+        if(sectionOptional.isPresent()) {
+            List<Enrollment> enrollments = section.getEnrollments();
+
+            List<Student> studentsList = new ArrayList<>();
+
+            for (Enrollment enrollment : enrollments)
+                studentsList.add(enrollment.getStudent());
+
+            return  studentsList;
+        }
+         return null;
+
     }
 
     @Override
     public List<Section> findSectionsForStudent(Student student) {
-        return null;
+        Optional<Student> studentOptional = studentRepository.findById(student.getId());
+        if(studentOptional.isPresent()) {
+
+            Student studentFound = studentOptional.get();
+            List<Enrollment> enrollments = studentFound.getEnrollments();
+
+            List<Section> sectionsList = new ArrayList<>();
+
+            for (Enrollment enrollment : enrollments)
+                sectionsList.add(enrollment.getSection());
+
+            return  sectionsList;
+        }
+
+        return  null;
+
     }
 
 

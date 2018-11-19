@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Enrollment {
+    Enrollment(){}
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

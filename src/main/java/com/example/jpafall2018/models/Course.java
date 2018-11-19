@@ -27,7 +27,7 @@ public class Course {
 	@ManyToOne(	cascade = {CascadeType.ALL})
 	private Faculty author;
 
-	@OneToMany(mappedBy="course",orphanRemoval = true)
+	@OneToMany(mappedBy="course",orphanRemoval = true ,fetch = FetchType.EAGER)
 	private List<Section> sections;
 
 	public int getId() {
