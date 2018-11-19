@@ -124,8 +124,8 @@ public class UniversityDao  implements UniversityInterface {
     //finder methods
 
     @Override
-    public List<Person> findAllUsers() {
-        return null;
+    public List<User> findAllUsers() {
+        return (List<User>) userRepository.findAll();
     }
 
 

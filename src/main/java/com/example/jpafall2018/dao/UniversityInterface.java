@@ -19,7 +19,7 @@ public interface UniversityInterface {
 
 
      //finder methods
-     List<Person> findAllUsers();
+     List<User> findAllUsers();
     List<Faculty> findAllFaculty();
     List<Student> findAllStudents();
     List<Course> findAllCourses();

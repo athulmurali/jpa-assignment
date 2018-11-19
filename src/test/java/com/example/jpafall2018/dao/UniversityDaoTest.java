@@ -65,7 +65,7 @@ public class UniversityDaoTest {
 
 
     @Test
-    public void test_01_create_all_records(){
+    public void test_000_create_all_records(){
 
         ud.truncateDatabase();
 
@@ -133,11 +133,64 @@ public class UniversityDaoTest {
 
     }
 
+//    Validates uses - write a test that validates the total number of users
 
     @Test
-    public void test_02_createFaculty() {
+    public void test_01_validate_all_users() {
+
+
+        assertEquals(9, ud.findAllUsers().size());
 
     }
+
+//    Validates faculty - write a test that validates the total number of faculty
+        @Test
+    public  void  test_02_validate_all_faculties(){
+
+            assertEquals(2, ud.findAllFaculty().size());
+        }
+
+
+//    Validates students - write a test that validates the total number of students
+
+    @Test
+    public  void  test_03_validate_all_students(){
+
+        assertEquals(7, ud.findAllStudents().size());
+    }
+
+
+
+//    Validates courses - write a test that validates the total number of courses
+
+    @Test
+    public  void  test_04_validate_all_courses(){
+
+        assertEquals(4, ud.findAllCourses().size());
+    }
+
+
+
+
+//    Validates sections - write a test that validates the total number of sections
+
+
+    @Test
+    public  void  test_05_validate_all_sections(){
+
+        assertEquals(4, ud.findAllSections().size());
+    }
+
+
+//   Validates Course authorship - write a test that validates
+// the total number of courses authored by each faculty
+
+    @Test
+    public  void  test_06_validate_all_section(){
+
+        assertEquals(4, ud.findAllSections().size());
+    }
+
 
 
 
